@@ -1,15 +1,21 @@
-# Schritt 1: Base Image
+# Schritt 1: Base-Image mit Builder-Label
 FROM node:18-alpine AS builder
 
-# Arbeitsverzeichnis im Container
+# Arbeitsverzeichnis
 WORKDIR /app
 
-# Abhängigkeiten kopieren und installieren
+# Dependencies kopieren und installieren
 COPY package.json yarn.lock ./
 RUN yarn install
 
-# Source-Code kopieren und kompilieren
+# Linting
 COPY . .
+RUN yarn lint
+
+# Testing
+RUN yarn test
+
+# Build
 RUN yarn build
 
 # Schritt 2: Production-Image
@@ -17,11 +23,11 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Nur das gebaute Ergebnis + nötige Files kopieren
+# Nur das Ergebnis und notwendige Dateien kopieren
 COPY --from=builder /app/package.json /app/yarn.lock ./
 COPY --from=builder /app/build ./build
 
-# Nur production-Abhängigkeiten installieren
+# Nur production-Abhängigkeiten
 RUN yarn install --production
 
 # Startbefehl
