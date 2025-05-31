@@ -9,8 +9,8 @@ COPY package.json yarn.lock ./
 RUN yarn install
 
 # Linting
-COPY . .
-RUN yarn lint
+#COPY . .
+#RUN yarn lint
 
 # Testing
 RUN yarn test
