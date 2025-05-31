@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Dependencies kopieren und installieren
 COPY package.json yarn.lock ./
-#RUN yarn install
+RUN yarn install --frozen-lockfile
 
 # Linting
 #COPY . .
