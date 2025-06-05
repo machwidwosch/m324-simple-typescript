@@ -1,8 +1,14 @@
- 
-  console.log('Hello world!');
+import express from 'express';
 
-  const thisIsAnUnsusedVariable = 'Hello world!';
+const app = express();
+const port = process.env.PORT || 3000;
 
-    const thisIsAnUnusedFunction = () => {
-    console.log('Hello world!');
-    };
+// Eine einfache Route
+app.get('/', (_req, res) => {
+  res.send('Hello from TypeScript + Express!');
+});
+
+// Server starten
+app.listen(port, () => {
+  console.log(`🚀 Server läuft auf http://localhost:${port}`);
+});
