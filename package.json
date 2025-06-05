@@ -19,6 +19,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^5.0.2",
     "@types/jest": "^29.5.14",
     "@types/node": "^18.6.1",
     "@typescript-eslint/eslint-plugin": "^8.33.0",
@@ -39,6 +40,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "express": "^5.1.0",
     "jest-cucumber": "^3.0.1"
   }
 }
